@@ -1,0 +1,24 @@
+select
+  *
+from
+  employee
+  -- Create a list of employees and their immediate managers.
+select
+  emp.firstname as emp_firstname,
+  emp.lastname as emp_lastname,
+  manager.firstname as manager_firstname,
+  manager.lastName as manager_lastname
+from
+  employee emp
+  JOIN Employee manager ON emp.managerId = manager.employeeId
+  -- Find sales people who have zero sales
+select
+  firstName,
+  lastName
+from
+  employee
+  left join sales on employee.employeeId = sales.employeeId
+where
+  title = 'Sales Person'
+  and sales.salesId is NULL
+  -- List all customers & their sales, even if some data is gone
